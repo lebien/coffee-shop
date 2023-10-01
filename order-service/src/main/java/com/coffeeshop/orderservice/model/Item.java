@@ -29,10 +29,24 @@ public class Item {
             inverseJoinColumns = @JoinColumn(name = "menu_id"))
     private Set<Menu> menuItems;
 
+
+    @ManyToMany
+    @JoinTable(
+            name = "order_item",
+            joinColumns = @JoinColumn(name = "item_id"),
+            inverseJoinColumns = @JoinColumn(name = "order_id"))
+    private Set<Order> orderItems;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private Order order;
+
     @Column(name = "item_name")
     private String itemName;
 
     private BigDecimal price;
 
     private String description;
+
+    private Integer quantity;
 }

@@ -21,19 +21,8 @@ public class Shop {
     @Column(name = "shop_id")
     private Long shopId;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    private List<Order> orders;
-
-    @OneToMany(cascade=CascadeType.ALL)
-    private List<Menu> menus;
-
-    @OneToMany(cascade=CascadeType.ALL)
-    private List<Queue> queues;
-
-    @OneToMany(cascade=CascadeType.ALL)
-    private List<ServingHistory> servingHistories;
-
-    private String name;
+    @Column(name = "shop_name")
+    private String shopName;
 
     private String location;
 

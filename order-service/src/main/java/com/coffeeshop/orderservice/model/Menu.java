@@ -24,6 +24,10 @@ public class Menu {
     @ManyToMany(mappedBy = "menuItems")
     private Set<Item> items;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
+
 
 
 }

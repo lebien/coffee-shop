@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -21,14 +22,21 @@ public class Order {
     @Column(name = "order_id")
     private Long orderId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "queue_id")
+    private Queue queue;
+
     @Column(name = "order_time")
-    private String orderTime;
+    private LocalDateTime orderTime;
 
-    @Column(name = "estimate_pick_up_time")
-    private String estimatedPickupTime;
+    @ManyToMany(mappedBy = "orderItems")
+    private Set<Item> items;
 
-
-    // 1 = pending, 0 = processing, -1 = done
-    private Integer status;
+    // there are 3 values = Placed, In Progress, Completed
+    private String status;
 
 }

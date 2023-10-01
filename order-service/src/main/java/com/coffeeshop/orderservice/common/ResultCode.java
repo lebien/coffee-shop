@@ -1,4 +1,4 @@
-package com.coffeeshop.orderservice.response;
+package com.coffeeshop.orderservice.common;
 
 public enum ResultCode implements ErrorCode {
     SUCCESS("200", "Get data success"),

@@ -22,16 +22,17 @@ public class Queue {
     @Column(name = "queue_id")
     private Long queueId;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    private List<ServingHistory> servingHistories;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
 
     @Column(name = "queue_number")
     private Integer queueNumber;
 
-    @Column(name = "queue_size")
-    private Integer queueSize;
+    @Column(name = "max_queue_size")
+    private Integer maxQueueSize;
 
-    // 1 = available, 0 = unavailable
+    // available or unavailable
     @Column(name = "current_status")
     private Boolean currentStatus;
 

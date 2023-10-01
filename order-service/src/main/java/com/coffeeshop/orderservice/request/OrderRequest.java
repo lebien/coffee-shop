@@ -1,19 +1,16 @@
 package com.coffeeshop.orderservice.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderRequest {
     private Long shopId;
-    private Long itemId;
-    private BigDecimal price;
-    private String itemName;
+    private Long userId;
+    private Set<ItemRequest> itemRequests;
 }

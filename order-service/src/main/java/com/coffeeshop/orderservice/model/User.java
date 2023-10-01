@@ -14,16 +14,16 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "customers")
-public class Customer {
+@Table(name = "users")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id")
-    private Long customerId;
+    @Column(name = "user_id")
+    private Long userId;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    private List<ServingHistory> servingHistories;
+    @Column(name = "user_name")
+    private String userName;
 
     private String name;
 
@@ -33,4 +33,6 @@ public class Customer {
     private String address;
 
     private String email;
+
+
 }
