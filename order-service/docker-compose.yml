@@ -1,0 +1,28 @@
+version: '3'
+services:
+  order-management-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8089:8089
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/coffee_shop  #
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+    depends_on:
+      - db
+  db:
+    ports:
+      - 5432:5432
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: coffee_shop
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  pg-data:
