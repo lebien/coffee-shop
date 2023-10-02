@@ -6,8 +6,8 @@
       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
     <changeSet id="create-table-user" author="lebien" >
         <createTable tableName="users">
-            <column name="user_id" type="BIGINT">
-                <constraints primaryKey="true" nullable="false"/>
+            <column name="user_id" type="BIGINT" autoIncrement="true">
+                <constraints  primaryKey="true" nullable="false" />
             </column>
             <column name="user_name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
@@ -28,7 +28,7 @@
     </changeSet>
     <changeSet id="create-table-shops" author="lebien" >
         <createTable tableName="shops">
-            <column name="shop_id" type="BIGINT">
+            <column name="shop_id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="shop_name" type="VARCHAR(255)">
@@ -54,7 +54,7 @@
 
     <changeSet id="create-queues-table" author="lebien">
         <createTable tableName="queues">
-            <column name="queue_id" type="BIGINT">
+            <column name="queue_id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="shop_id" type="BIGINT">
@@ -76,7 +76,7 @@
 
     <changeSet id="create-orders-table" author="lebien">
         <createTable tableName="orders">
-            <column name="order_id" type="BIGINT">
+            <column name="order_id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="user_id" type="BIGINT">
@@ -99,7 +99,7 @@
 
     <changeSet id="create-menus-table" author="lebien">
         <createTable tableName="menus">
-            <column name="menu_id" type="BIGINT">
+            <column name="menu_id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="shop_id" type="BIGINT">
@@ -112,7 +112,7 @@
 
     <changeSet id="create-items-table" author="lebien">
         <createTable tableName="items">
-            <column name="item_id" type="BIGINT">
+            <column name="item_id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="item_name" type="VARCHAR(255)">
@@ -132,7 +132,7 @@
 
     <changeSet id="create-menus_items-table" author="lebien">
         <createTable tableName="menus_items">
-            <column name="menu_id" type="BIGINT">
+            <column name="menu_id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="item_id" type="BIGINT">
@@ -142,7 +142,7 @@
     </changeSet>
     <changeSet id="create-order-item-table" author="lebien">
         <createTable tableName="order_item">
-            <column name="item_id" type="BIGINT">
+            <column name="item_id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="order_id" type="BIGINT">
@@ -157,7 +157,7 @@
 
     <changeSet id="create-payment-information-table" author="lebien">
         <createTable tableName="payment_information">
-            <column name="payment_info_id" type="BIGINT">
+            <column name="payment_info_id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="user_id" type="BIGINT">
@@ -179,7 +179,7 @@
 
     <changeSet id="create-queue-status-table" author="lebien">
         <createTable tableName="queue_status">
-            <column name="queue_status_id" type="BIGINT">
+            <column name="queue_status_id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="queue_id" type="BIGINT">

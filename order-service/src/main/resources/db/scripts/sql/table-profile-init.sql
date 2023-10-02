@@ -28,6 +28,15 @@ VALUES (4,'Shop 4', '101 Pine Road', 'Contact 4', '07:30 AM', '05:30 PM', 12);
 
 INSERT INTO shops (shop_id,shop_name, location, contact_detail, open_time, close_time, max_queues)
 VALUES (5,'Shop 5', '222 Maple Lane', 'Contact 5', '08:30 AM', '06:30 PM', 18);
+--insert Queue tale
+INSERT INTO queues (queue_id,shop_id, queue_number, max_queue_size, current_status)
+VALUES
+  (1,1, 1, 10, true),
+  (2,1, 2, 10, true),
+  (3,2, 1, 15, true),
+  (4,3, 1, 8, false),
+  (5,3, 2, 8, false);
+
 
 
 

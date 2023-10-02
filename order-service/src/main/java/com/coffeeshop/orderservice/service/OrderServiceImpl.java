@@ -41,11 +41,11 @@ public class OrderServiceImpl implements OrderService{
             Order order = new Order();
             Queue queue;
             User user ;
-            //finding available queue from shop
-            List<Queue>  queues = queueRepository.findByShopIdOrderByQueueNumber(orderRequest.getShopId());
-
             //check user to see if user is registered
             Optional<User> userOptional = userRepository.findById(orderRequest.getUserId());
+
+            //finding available queue from shop
+            List<Queue>  queues = queueRepository.findByShopIdOrderByQueueNumber(orderRequest.getShopId());
 
 
             if (CollectionUtils.isEmpty(queues) || !userOptional.isPresent()){
@@ -84,7 +84,7 @@ public class OrderServiceImpl implements OrderService{
                 queueStatus.setUserUser(user);
                 queueStatus.setPosition(queue.getQueueNumber());
                 //average service time per a customer = 20 minutes, if the queue is having 3 waiting customers, current customer will have to wait 20 *4 =80 minutes
-                queueStatus.setEstimatedPickupTime(currentTime.plusMinutes(20*queue.getQueueNumber()));
+                queueStatus.setEstimatedPickupTime(currentTime.plusMinutes(20L *queue.getQueueNumber()));
                 //save QueueStatus to DB
                 queueStatusRepository.save(queueStatus);
             }
