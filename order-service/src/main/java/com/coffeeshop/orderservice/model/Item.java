@@ -37,10 +37,6 @@ public class Item {
             inverseJoinColumns = @JoinColumn(name = "order_id"))
     private Set<Order> orderItems;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    private Order order;
-
     @Column(name = "item_name")
     private String itemName;
 

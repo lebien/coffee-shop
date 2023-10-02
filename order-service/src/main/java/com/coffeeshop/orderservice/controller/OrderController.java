@@ -5,6 +5,7 @@ import com.coffeeshop.orderservice.request.OrderRequest;
 import com.coffeeshop.orderservice.response.OrderResponse;
 import com.coffeeshop.orderservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +24,9 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<OrderResponse> placeOrder(@RequestBody OrderRequest orderRequest){
         OrderResponse orderResponse =orderService.placeOrder(orderRequest);
-        return  ResponseEntity.ok(orderResponse);
+        return  orderResponse.isSuccess()
+                ?ResponseEntity.ok(orderResponse)
+                :ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(orderResponse);
     }
 
 

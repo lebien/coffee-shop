@@ -36,6 +36,4 @@ public class Queue {
     @Column(name = "current_status")
     private Boolean currentStatus;
 
-
-
 }

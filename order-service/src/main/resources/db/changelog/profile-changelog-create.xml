@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet id="create-table-user" author="lebien" >
+        <createTable tableName="users">
+            <column name="user_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(255)">
+                <!-- Add constraints if needed -->
+            </column>
+            <column name="mobile_phone" type="VARCHAR(50)">
+                <!-- Add constraints if needed, e.g., enum values -->
+            </column>
+            <column name="email" type="VARCHAR(50)">
+                <!-- Add constraints if needed, e.g., enum values -->
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="create-table-shops" author="lebien" >
+        <createTable tableName="shops">
+            <column name="shop_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="shop_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location" type="VARCHAR(255)">
+                <!-- Add constraints if needed -->
+            </column>
+            <column name="contact_detail" type="VARCHAR(255)">
+                <!-- Add constraints if needed -->
+            </column>
+            <column name="open_time" type="TIME">
+                <!-- Add constraints if needed -->
+            </column>
+            <column name="close_time" type="TIME">
+                <!-- Add constraints if needed -->
+            </column>
+            <column name="max_queues" type="INT">
+                <!-- Add constraints if needed -->
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-queues-table" author="lebien">
+        <createTable tableName="queues">
+            <column name="queue_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="shop_id" type="BIGINT">
+                <!-- Add constraints as needed -->
+            </column>
+            <column name="queue_number" type="INT">
+                <!-- Add constraints as needed -->
+            </column>
+            <column name="max_queue_size" type="INT">
+                <!-- Add constraints as needed -->
+            </column>
+            <column name="current_status" type="BOOLEAN">
+                <!-- Add constraints as needed -->
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Add foreign key constraint to reference the "shops" table -->
+
+    <changeSet id="create-orders-table" author="lebien">
+        <createTable tableName="orders">
+            <column name="order_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <!-- Add constraints as needed -->
+            </column>
+            <column name="queue_id" type="BIGINT">
+                <!-- Add constraints as needed -->
+            </column>
+            <column name="order_time" type="TIMESTAMP">
+                <!-- Add constraints as needed -->
+            </column>
+            <column name="status" type="VARCHAR(50)">
+                <!-- Add constraints as needed -->
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Add foreign key constraints -->
+
+
+    <changeSet id="create-menus-table" author="lebien">
+        <createTable tableName="menus">
+            <column name="menu_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="shop_id" type="BIGINT">
+                <!-- Add constraints as needed -->
+            </column>
+        </createTable>
+    </changeSet>
+
+
+
+    <changeSet id="create-items-table" author="lebien">
+        <createTable tableName="items">
+            <column name="item_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="item_name" type="VARCHAR(255)">
+                <!-- Add constraints as needed -->
+            </column>
+            <column name="price" type="DECIMAL(10, 2)">
+                <!-- Add constraints as needed -->
+            </column>
+            <column name="description" type="VARCHAR(1000)">
+                <!-- Add constraints as needed -->
+            </column>
+            <column name="quantity" type="INT">
+                <!-- Add constraints as needed -->
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-menus_items-table" author="lebien">
+        <createTable tableName="menus_items">
+            <column name="menu_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="item_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="create-order-item-table" author="lebien">
+        <createTable tableName="order_item">
+            <column name="item_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="order_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Add foreign key constraints for the join table -->
+
+    <!-- Add foreign key constraint for the Many-to-One relationship -->
+
+    <changeSet id="create-payment-information-table" author="lebien">
+        <createTable tableName="payment_information">
+            <column name="payment_info_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <!-- Add constraints as needed -->
+            </column>
+            <column name="payment_method" type="VARCHAR(255)">
+                <!-- Add constraints as needed -->
+            </column>
+            <column name="card_number" type="VARCHAR(16)">
+                <!-- Add constraints as needed -->
+            </column>
+            <column name="expiry_date" type="VARCHAR(7)">
+                <!-- Add constraints as needed -->
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Add foreign key constraint to reference the "users" table -->
+
+    <changeSet id="create-queue-status-table" author="lebien">
+        <createTable tableName="queue_status">
+            <column name="queue_status_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="queue_id" type="BIGINT">
+                <!-- Add constraints as needed -->
+            </column>
+            <column name="user_id" type="BIGINT">
+                <!-- Add constraints as needed -->
+            </column>
+            <column name="position" type="INT">
+                <!-- Add constraints as needed -->
+            </column>
+            <column name="estimate_pick_up_time" type="TIMESTAMP">
+                <!-- Add constraints as needed -->
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Add foreign key constraints -->
+    <changeSet id="add-foreign-key-constraints" author="lebien">
+        <addForeignKeyConstraint baseTableName="queue_status" baseColumnNames="queue_id"
+                                 constraintName="fk_queue_status_queue_id" referencedTableName="queues"
+                                 referencedColumnNames="queue_id" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="queue_status" baseColumnNames="user_id"
+                                 constraintName="fk_queue_status_user_id" referencedTableName="users"
+                                 referencedColumnNames="user_id" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="orders" baseColumnNames="user_id"
+                                 constraintName="fk_orders_user_id" referencedTableName="users"
+                                 referencedColumnNames="user_id" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="orders" baseColumnNames="queue_id"
+                                 constraintName="fk_orders_queue_id" referencedTableName="queues"
+                                 referencedColumnNames="queue_id" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="menus" baseColumnNames="shop_id"
+                                 constraintName="fk_menus_shop_id" referencedTableName="shops"
+                                 referencedColumnNames="shop_id" onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="menus_items" baseColumnNames="menu_id"
+                                 constraintName="fk_menu_item_menu_id" referencedTableName="menus"
+                                 referencedColumnNames="menu_id" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="menus_items" baseColumnNames="item_id"
+                                 constraintName="fk_menu_item_item_id" referencedTableName="items"
+                                 referencedColumnNames="item_id" onDelete="CASCADE"/>
+
+
+        <addForeignKeyConstraint baseTableName="order_item" baseColumnNames="item_id"
+                                 constraintName="fk_order_item_item_id" referencedTableName="items"
+                                 referencedColumnNames="item_id" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="order_item" baseColumnNames="order_id"
+                                 constraintName="fk_order_item_order_id" referencedTableName="orders"
+                                 referencedColumnNames="order_id" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="queues" baseColumnNames="shop_id"
+                                 constraintName="fk_queues_shop_id" referencedTableName="shops"
+                                 referencedColumnNames="shop_id" onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="payment_information" baseColumnNames="user_id"
+                                 constraintName="fk_payment_information_user_id" referencedTableName="users"
+                                 referencedColumnNames="user_id" onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

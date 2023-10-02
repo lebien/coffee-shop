@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy the compiled JAR file into the container
 COPY target/order-service-0.0.1-SNAPSHOT.jar /app
 
-EXPOSE 8089
+EXPOSE 8080
 
 # Specify the command to run your application
 ENTRYPOINT ["java", "-jar", "order-service-0.0.1-SNAPSHOT.jar"]
